@@ -1,0 +1,44 @@
+rob:
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  shoulder_left_front_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_left_front
+    pid: {p: 50, i: 1, d: 0}
+
+  shoulder_right_front_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_right_front
+    pid: {p: 50, i: 1, d: 0 }
+
+  shoulder_left_back_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_left_back
+    pid: {p: 50, i: 1, d: 0}
+
+  shoulder_right_back_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: shoulder_right_back
+    pid: {p: 50, i: 1, d: 0}
+
+  front_left_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: front_left_joint
+    pid: {p: 50, i: 1, d: 0}
+
+  front_right_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: front_right_joint
+    pid: {p: 50, i: 1, d: 0}
+
+  back_left_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: back_left_joint
+    pid: {p: 50, i: 1, d: 0}
+
+  back_right_joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: back_right_joint
+    pid: {p: 50, i: 1, d: 0}

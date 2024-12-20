@@ -1,0 +1,30 @@
+<launch>
+    <include file="$(find my_rob_description)/launch/spawn_urdf.launch">
+        <arg name="x" value="0.0" />
+        <arg name="y" value="0.0" />
+        <arg name="z" value="0.2" />
+        <arg name="urdf_robot_file" value="$(find my_rob_description)/urdf/rob_simple.urdf" />
+        <arg name="robot_name" value="rob" />
+    </include>
+
+  <!-- Give some time for Gazebo to start -->
+  <rosparam file="$(find my_rob_description)/config/rob_controllers.yaml" command="load"/>
+
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" 
+        respawn="false" output="screen" ns="/rob"
+        args="joint_state_controller 
+              shoulder_left_front_position_controller
+              front_left_joint_position_controller
+              shoulder_right_front_position_controller
+              front_right_joint_position_controller
+              shoulder_left_back_position_controller
+              back_left_joint_position_controller
+              shoulder_right_back_position_controller
+              back_right_joint_position_controller" />
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/rob/joint_states" />
+  </node>
+
+</launch>
