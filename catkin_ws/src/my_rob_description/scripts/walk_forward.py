@@ -82,7 +82,7 @@ def main():
 
     # Give the publishers some time to connect
     rospy.sleep(1.0)
-
+#
     # Iterate through poses
     for pose in poses:
         angles = pose["angles"]

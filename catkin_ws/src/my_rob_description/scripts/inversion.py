@@ -18,40 +18,12 @@ def main():
         "back_right_joint": rospy.Publisher('rob/back_right_joint_position_controller/command', Float64, queue_size=1)
     }
     initan = 0.52
-    # Define poses as a list of dictionaries with optional timeout
-    # INITIAL STANDUP POSE
+
+    #WALKING LOOP
+
     poses = [
-        {
-            # Default SolidWorks state
-            "angles": {
-                "shoulder_left_front": 3.55,
-                "front_left_joint": -initan,
-                "shoulder_right_front": 3.55,
-                "front_right_joint": -initan,
-                "shoulder_left_back": 1.55,
-                "back_left_joint": initan,
-                "shoulder_right_back": 1.55,
-                "back_right_joint": initan
-            },
-            "timeout": 1.5  # Time to wait after this pose
-        },
-        {
-            # Mid state
-            "angles": {
-                "shoulder_left_front": 5.2,
-                "front_left_joint": -initan,
-                "shoulder_right_front": 5.2,
-                "front_right_joint": -initan,
-                "shoulder_left_back": 0.3,
-                "back_left_joint": initan,
-                "shoulder_right_back": 0.3,
-                "back_right_joint": initan
-            },
-            "timeout": 1.5  # Custom time for this pose
-        },
-        
-        {
-            # standby state
+    {
+            # standup state
             "angles": {
                 "shoulder_left_front": 6.4,
                 "front_left_joint": initan+0.62,
@@ -62,11 +34,24 @@ def main():
                 "shoulder_right_back": 0.4,
                 "back_right_joint": initan+0.62
             },
-            "timeout": 1.5  # Another custom time
+            "timeout": 0.5  # Another custom time
+        },
+        {
+            # move front legs state
+            "angles": {
+                "shoulder_left_front": 4.9,
+                "front_left_joint": initan - 1.4,
+                "shoulder_right_front": 4.9,
+                "front_right_joint": initan - 1.4,
+                "shoulder_left_back": -0.92,
+                "back_left_joint": initan - 1.4,
+                "shoulder_right_back": -0.92,
+                "back_right_joint": initan - 1.4
+            },
+            "timeout": 0.5  # Another custom time
         }
     ]
 
-#
     # Give the publishers some time to connect
     rospy.sleep(1.0)
 
